@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>رسالة أسيوط - الصفحة الرئيسية</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
+
+        :root {
+            --primary-color: #0059ff;
+            --secondary-color: #00aaff;
+            --text-color: #333;
+            --bg-color: #f4f4f4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            height: 10%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-left: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-right: 1.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .burger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .burger div {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-color);
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5rem 0;
+            min-height: 100vh;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding-right: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Banner Slider */
+        .banner-slider {
+            position: relative;
+            overflow: hidden;
+            height: 400px;
+            margin-bottom: 2rem;
+        }
+
+        .banner-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .banner-slide.active {
+            opacity: 1;
+        }
+
+        .banner-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Card Section */
+        .card-section {
+            padding: 2rem 0;
+        }
+
+        .card-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .card {
+            flex: 0 0 auto;
+            width: 300px;
+            margin-right: 1rem;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            scroll-snap-align: start;
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 1rem;
+        }
+
+        .card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                right: 0;
+                height: 92vh;
+                top: 8vh;
+                background-color: #fff;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 50%;
+                transform: translateX(100%);
+                transition: transform 0.5s ease-in;
+            }
+
+            .nav-links li {
+                opacity: 0;
+            }
+
+            .burger {
+                display: block;
+            }
+
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            .hero-content, .hero-image {
+                flex: none;
+                width: 100%;
+            }
+
+            .hero-content {
+                padding-right: 0;
+                margin-top: 2rem;
+            }
+
+            .card-container {
+                padding-bottom: 1rem;
+            }
+        }
+
+        .nav-active {
+            transform: translateX(0%);
+        }
+
+        @keyframes navLinkFade {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0px);
+            }
+        }
+
+        .toggle .line1 {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .toggle .line2 {
+            opacity: 0;
+        }
+
+        .toggle .line3 {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <img src="LOGO2.png" alt="شعار رسالة أسيوط">
+                    رسالة أسيوط
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#">الرئيسية</a></li>
+                    <li><a href="#">من نحن</a></li>
+                    <li><a href="#">برامجنا</a></li>
+                    <li><a href="#">التطوع</a></li>
+                    <li><a href="#">التبرع</a></li>
+                    <li><a href="#">اتصل بنا</a></li>
+                </ul>
+                <div class="burger">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>معًا نصنع الفرق</h1>
+                    <p>رسالة أسيوط هي مؤسسة خيرية تهدف إلى خدمة المجتمع وتحسين حياة الأفراد من خلال مبادرات متنوعة ومشاريع تنموية.</p>
+                    <a href="#" class="cta-button">انضم إلينا</a>
+                </div>
+                <div class="hero-image">
+                    <img src="LOGO2.png" alt="صورة توضيحية لأنشطة رسالة أسيوط">
+                </div>
+            </div>
+        </section>
+
+        <section class="card-section">
+            <div class="container">
+                <h2>مشاريعنا</h2>
+                <div class="card-container">
+                    <div class="card">
+                        <img src="LOGO2.png" alt="مشروع 1">
+                        <div class="card-content">
+                            <h3>مشروع التعليم</h3>
+                            <p>نعمل على توفير فرص تعليمية للأطفال المحتاجين.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="LOGO2.png" alt="مشروع 2">
+                        <div class="card-content">
+                            <h3>مشروع الصحة</h3>
+                            <p>نقدم خدمات صحية مجانية للمجتمعات المحرومة.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="LOGO2.png" alt="مشروع 3">
+                        <div class="card-content">
+                            <h3>مشروع التمكين الاقتصادي</h3>
+                            <p>ندعم الأسر من خلال مشاريع صغيرة مدرة للدخل.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="LOGO2.png" alt="مشروع 4">
+                        <div class="card-content">
+                            <h3>مشروع البيئة</h3>
+                            <p>نعمل على تحسين البيئة المحلية وزيادة الوعي البيئي.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const navSlide = () => {
+            const burger = document.querySelector('.burger');
+            const nav = document.querySelector('.nav-links');
+            const navLinks = document.querySelectorAll('.nav-links li');
+
+            burger.addEventListener('click', () => {
+                // Toggle Nav
+                nav.classList.toggle('nav-active');
+
+                // Animate Links
+                navLinks.forEach((link, index) => {
+                    if (link.style.animation) {
+                        link.style.animation = '';
+                    } else {
+                        link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+                    }
+                });
+
+                // Burger Animation
+                burger.classList.toggle('toggle');
+            });
+        }
+
+        navSlide();
+
+        // Shrink header on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.padding = '0.5rem 0';
+            } else {
+                header.style.padding = '1rem 0';
+            }
+        });
+
+        // Banner Slider
+        const bannerSlides = document.querySelectorAll('.banner-slide');
+        let currentSlide = 0;
+
+        function showSlide(n) {
+            bannerSlides[currentSlide].classList.remove('active');
+            currentSlide = (n + bannerSlides.length) % bannerSlides.length;
+            bannerSlides[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        // تبديل الشريحة كل 5 ثوانٍ
+        setInterval(nextSlide, 5000);
+
+        // Card Scrolling
+        const cardContainer = document.querySelector('.card-container');
+        const cards = document.querySelectorAll('.card');
+        let currentCardIndex = 0;
+
+        function scrollCards() {
+            currentCardIndex = (currentCardIndex + 1) % cards.length;
+            const cardWidth = cards[0].offsetWidth + parseInt(window.getComputedStyle(cards[0]).marginRight);
+            cardContainer.scroll({
+                left: currentCardIndex * cardWidth,
+                behavior: 'smooth'
+        });
+    }
+
+    // تبديل الكروت كل 5 ثوانٍ
+    let cardScrollInterval = setInterval(scrollCards, 5000);
+
+    // إيقاف التمرير التلقائي عند تفاعل المستخدم
+    cardContainer.addEventListener('mouseenter', () => {
+        clearInterval(cardScrollInterval);
+    });
+
+    cardContainer.addEventListener('mouseleave', () => {
+        cardScrollInterval = setInterval(scrollCards, 5000);
+    });
+</script>
+</body>
+</html>
