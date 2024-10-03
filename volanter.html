@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نموذج تطوع</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f5ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        form {
+            background-color: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 400px;
+            border: 2px solid #3f51b5;
+        }
+        h1 {
+            color: #3f51b5;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #3f51b5;
+            font-weight: 500;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #bdc3c7;
+            border-radius: 5px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #3f51b5;
+        }
+        input[type="submit"] {
+            background-color: #3f51b5;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 12px;
+            border: none;
+        }
+        input[type="submit"]:hover {
+            background-color: #f44336;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        }
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            color: #3f51b5;
+            margin-bottom: 20px;
+        }
+        .radio-group label {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        .radio-group input[type="radio"] {
+            margin-left: 10px;
+            width: auto;
+        }
+        .notification {
+            background-color: #e8eaf6;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 30px;
+            text-align: center;
+            color: #3f51b5;
+            font-style: italic;
+            font-size: 14px;
+        }
+        .error {
+            color: #f44336;
+            font-size: 14px;
+            margin-top: -15px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <form id="volunteerForm">
+        <h1>نموذج تطوع</h1>
+        
+        <label for="fullName">الاسم رباعي:</label>
+        <input type="text" id="fullName" name="fullName" required>
+        
+        <label for="age">السن:</label>
+        <input type="number" id="age" name="age" required>
+        
+        <label for="phone">رقم الهاتف:</label>
+        <input type="tel" id="phone" name="phone" required>
+        
+        <label for="address">العنوان:</label>
+        <input type="text" id="address" name="address" required>
+        
+        <label for="governorate">المحافظة:</label>
+        <select id="governorate" name="governorate" required>
+            <option value="">اختر المحافظة</option>
+            <option value="القاهرة">القاهرة</option>
+            <option value="الإسكندرية">الإسكندرية</option>
+            <option value="الجيزة">الجيزة</option>
+            <option value="الشرقية">الشرقية</option>
+            <option value="الغربية">الغربية</option>
+            <option value="المنوفية">المنوفية</option>
+            <option value="القليوبية">القليوبية</option>
+            <option value="البحيرة">البحيرة</option>
+            <option value="كفر الشيخ">كفر الشيخ</option>
+            <option value="الدقهلية">الدقهلية</option>
+            <option value="الإسماعيلية">الإسماعيلية</option>
+            <option value="السويس">السويس</option>
+            <option value="بورسعيد">بورسعيد</option>
+            <option value="شمال سيناء">شمال سيناء</option>
+            <option value="جنوب سيناء">جنوب سيناء</option>
+            <option value="بني سويف">بني سويف</option>
+            <option value="المنيا">المنيا</option>
+            <option value="الفيوم">الفيوم</option>
+            <option value="أسيوط">أسيوط</option>
+            <option value="سوهاج">سوهاج</option>
+            <option value="قنا">قنا</option>
+            <option value="الأقصر">الأقصر</option>
+            <option value="أسوان">أسوان</option>
+            <option value="البحر الأحمر">البحر الأحمر</option>
+            <option value="الوادي الجديد">الوادي الجديد</option>
+            <option value="مطروح">مطروح</option>
+        </select>
+        
+        <label>النشاط:</label>
+        <div class="radio-group">
+            <label>
+                <input type="radio" name="activity" value="زكاة عقل" required> زكاة عقل
+            </label>
+            <label>
+                <input type="radio" name="activity" value="ميديا"> ميديا
+            </label>
+            <label>
+                <input type="radio" name="activity" value="انقاذ حياة"> انقاذ حياة
+            </label>
+            <label>
+                <input type="radio" name="activity" value="مكفوفين"> مكفوفين
+            </label>
+            <label>
+                <input type="radio" name="activity" value="مساعدات"> مساعدات
+            </label>
+            <label>
+                <input type="radio" name="activity" value="معارض"> معارض
+            </label>
+            <label>
+                <input type="radio" name="activity" value="طبي"> طبي
+            </label>
+        </div>
+
+        <label for="activityReason">سبب اختيارك للنشاط:</label>
+        <textarea id="activityReason" name="activityReason" rows="4" required></textarea>
+
+        <label>من أين عرفت الجمعية:</label>
+        <div class="radio-group">
+            <label>
+                <input type="radio" name="referral" value="صديق" required> صديق
+            </label>
+            <label>
+                <input type="radio" name="referral" value="السوشيال ميديا"> السوشيال ميديا
+            </label>
+            <label>
+                <input type="radio" name="referral" value="حملات دعاية"> حملات دعاية
+            </label>
+        </div>
+        
+        <input type="submit" value="إرسال الطلب">
+        
+        <div class="notification">
+            سيتم التواصل معك خلال 48 ساعة من تقديم الطلب
+        </div>
+    </form>
+
+    <script>
+        document.getElementById('volunteerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // التحقق من صحة النموذج
+            if (this.checkValidity()) {
+                // جمع البيانات
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData.entries());
+                
+                // إرسال البيانات إلى الخادم (هذا مثال فقط)
+                sendDataToServer(data);
+            } else {
+                // إظهار رسائل الخطأ
+                this.reportValidity();
+            }
+        });
+
+        function sendDataToServer(data) {
+            // هنا يمكنك إضافة الكود الخاص بإرسال البيانات إلى الخادم
+            // على سبيل المثال، يمكنك استخدام fetch API:
+            
+            /*
+            fetch('/api/submit-volunteer', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(result => {
+                alert('تم إرسال طلبك بنجاح!');
+                // يمكنك إضافة المزيد من الإجراءات هنا، مثل إعادة تعيين النموذج
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('حدث خطأ أثناء إرسال طلبك. يرجى المحاولة مرة أخرى.');
+            });
+            */
+            
+            // للاختبار، سنقوم بطباعة البيانات في وحدة التحكم
+            console.log('البيانات المرسلة:', data);
+            alert('تم إرسال طلبك بنجاح! (هذه رسالة اختبار)');
+        }
+    </script>
+</body>
+</html>
