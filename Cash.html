@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نموذج التبرع العيني والمادي</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f5ff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+        }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .tab-button {
+            background-color: #3f51b5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .tab-button:hover {
+            background-color: #303f9f;
+        }
+        .tab-button.active {
+            background-color: #f44336;
+        }
+        form {
+            background-color: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 2px solid #3f51b5;
+        }
+        h1 {
+            color: #3f51b5;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #3f51b5;
+            font-weight: 500;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #bdc3c7;
+            border-radius: 5px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: #3f51b5;
+        }
+        input[type="submit"] {
+            background-color: #3f51b5;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 12px;
+            border: none;
+        }
+        input[type="submit"]:hover {
+            background-color: #f44336;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        }
+        .notification {
+            background-color: #e8eaf6;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 30px;
+            text-align: center;
+            color: #3f51b5;
+            font-style: italic;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="tabs">
+            <button class="tab-button active" onclick="showForm('inKind')">التبرع العيني</button>
+            <button class="tab-button" onclick="showForm('financial')">التبرع المادي</button>
+        </div>
+
+        <form id="inKindDonationForm">
+            <h1>نموذج التبرع العيني</h1>
+            
+            <label for="fullName1">الاسم رباعي:</label>
+            <input type="text" id="fullName1" name="fullName" required>
+            
+            <label for="phone1">رقم الهاتف:</label>
+            <input type="tel" id="phone1" name="phone" required>
+            
+            <label for="governorate1">المحافظة:</label>
+            <select id="governorate1" name="governorate" required>
+                <option value="">اختر المحافظة</option>
+                <option value="القاهرة">القاهرة</option>
+                <option value="الإسكندرية">الإسكندرية</option>
+                <option value="الجيزة">الجيزة</option>
+                <!-- يمكن إضافة باقي المحافظات هنا -->
+            </select>
+
+            <label for="address1">العنوان:</label>
+            <input type="text" id="address1" name="address" required>
+
+            <label for="donationType1">نوع التبرع:</label>
+            <select id="donationType1" name="donationType" required>
+                <option value="">اختر نوع التبرع</option>
+                <option value="كتب">كتب</option>
+                <option value="ملابس">ملابس</option>
+                <option value="أدوية">أدوية</option>
+                <option value="أخرى">أخرى</option>
+            </select>
+
+            <label for="receiveMethod1">طريقة استلام التبرع:</label>
+            <select id="receiveMethod1" name="receiveMethod" required>
+                <option value="">اختر طريقة الاستلام</option>
+                <option value="مندوب">مندوب</option>
+                <option value="فرع">فرع</option>
+            </select>
+            
+            <input type="submit" value="إرسال">
+            
+            <div class="notification">
+                سيتم التواصل معك قريبًا لترتيب استلام التبرع العيني
+            </div>
+        </form>
+
+        <form id="financialDonationForm" style="display: none;">
+            <h1>نموذج التبرع المادي</h1>
+            
+            <label for="fullName2">الاسم رباعي:</label>
+            <input type="text" id="fullName2" name="fullName" required>
+            
+            <label for="phone2">رقم الهاتف:</label>
+            <input type="tel" id="phone2" name="phone" required>
+            
+            <label for="governorate2">المحافظة:</label>
+            <select id="governorate2" name="governorate" required>
+                <option value="">اختر المحافظة</option>
+                <option value="القاهرة">القاهرة</option>
+                <option value="الإسكندرية">الإسكندرية</option>
+                <option value="الجيزة">الجيزة</option>
+                <!-- يمكن إضافة باقي المحافظات هنا -->
+            </select>
+
+            <label for="address2">العنوان:</label>
+            <input type="text" id="address2" name="address" required>
+
+            <label for="donationType2">نوع التبرع:</label>
+            <select id="donationType2" name="donationType" required>
+                <option value="">اختر نوع التبرع</option>
+                <option value="مرة واحدة">مرة واحدة</option>
+                <option value="دائم">دائم</option>
+            </select>
+
+            <label for="receiveMethod2">طريقة استلام التبرع:</label>
+            <select id="receiveMethod2" name="receiveMethod" required>
+                <option value="">اختر طريقة الاستلام</option>
+                <option value="مندوب">مندوب</option>
+                <option value="فرع">فرع</option>
+            </select>
+            
+            <input type="submit" value="إرسال">
+            
+            <div class="notification">
+                سيتم التواصل معك قريبًا لترتيب التبرع المادي
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function showForm(formType) {
+            const inKindForm = document.getElementById('inKindDonationForm');
+            const financialForm = document.getElementById('financialDonationForm');
+            const buttons = document.querySelectorAll('.tab-button');
+
+            if (formType === 'inKind') {
+                inKindForm.style.display = 'block';
+                financialForm.style.display = 'none';
+                buttons[0].classList.add('active');
+                buttons[1].classList.remove('active');
+            } else {
+                inKindForm.style.display = 'none';
+                financialForm.style.display = 'block';
+                buttons[0].classList.remove('active');
+                buttons[1].classList.add('active');
+            }
+        }
+
+        document.getElementById('inKindDonationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (this.checkValidity()) {
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData.entries());
+                console.log('بيانات التبرع العيني المرسلة:', data);
+                alert('تم إرسال طلب التبرع العيني بنجاح!');
+                this.reset();
+            } else {
+                this.reportValidity();
+            }
+        });
+
+        document.getElementById('financialDonationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (this.checkValidity()) {
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData.entries());
+                console.log('بيانات التبرع المادي المرسلة:', data);
+                alert('تم إرسال طلب التبرع المادي بنجاح!');
+                this.reset();
+            } else {
+                this.reportValidity();
+            }
+        });
+    </script>
+</body>
+              </html>
