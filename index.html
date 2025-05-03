@@ -2,11 +2,10 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="HandheldFriendly" content="true">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <title>رسالة أسيوط - الصفحة الرئيسية</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap');
@@ -30,6 +29,16 @@
       --shadow-light: rgba(0, 0, 0, 0.1);
       --shadow-heavy: rgba(0, 0, 0, 0.15);
       --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      
+      /* تحسينات جديدة للاستجابة */
+      --base-font-size: 16px;
+      --mobile-font-scale: 0.9;
+      --tablet-font-scale: 0.95;
+      
+      /* أحجام متجاوبة */
+      --responsive-padding: clamp(1rem, 3vw, 2rem);
+      --responsive-margin: clamp(1rem, 3vw, 2rem);
+      --responsive-gap: clamp(1rem, 3vw, 2rem);
     }
 
     * {
@@ -49,6 +58,8 @@
       scroll-behavior: smooth;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      font-size: var(--base-font-size);
+      overflow-x: hidden;
     }
 
     a {
@@ -60,6 +71,22 @@
       width: 90%;
       max-width: 1200px;
       margin: 0 auto;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* تحسين تحميل الصور غير المرئية */
+    img[loading="lazy"] {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    img[loading="lazy"].loaded {
+      opacity: 1;
     }
 
     /* Navbar */
@@ -76,11 +103,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1rem;
+      font-size: clamp(0.9rem, 2vw, 1rem);
       letter-spacing: 0.015em;
       font-weight: 600;
       backdrop-filter: saturate(180%) blur(10px);
       transition: var(--transition);
+      padding: 0 var(--responsive-padding);
     }
     
     nav {
@@ -89,7 +117,6 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 1.5rem;
     }
     
     .nav-left {
@@ -116,7 +143,7 @@
     }
     
     .nav-left .logo-text {
-      font-size: 1.9rem;
+      font-size: clamp(1.3rem, 4vw, 1.9rem);
       font-weight: 800;
       white-space: nowrap;
       user-select: text;
@@ -140,7 +167,7 @@
     
     .nav-links {
       display: flex;
-      gap: 2rem;
+      gap: clamp(0.5rem, 2vw, 2rem);
       list-style: none;
       height: 100%;
       align-items: center;
@@ -150,13 +177,13 @@
     .nav-links li a {
       color: var(--nav-text);
       font-weight: 700;
-      padding: 14px 18px;
+      padding: clamp(0.5rem, 1.5vw, 0.875rem) clamp(0.5rem, 1.5vw, 1.125rem);
       border-radius: 12px;
       transition: var(--transition);
       display: flex;
       align-items: center;
       height: 100%;
-      font-size: 1rem;
+      font-size: clamp(0.8rem, 2vw, 1rem);
       letter-spacing: 0.04em;
       text-transform: uppercase;
     }
@@ -195,10 +222,11 @@
     /* Hero Section */
     .hero {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: space-between;
-      padding: 90px 0 70px 0;
-      min-height: 90vh;
+      justify-content: center;
+      padding: clamp(4rem, 10vw, 6rem) var(--responsive-padding);
+      min-height: auto;
       background: linear-gradient(
           to right,
           rgba(0, 89, 255, 0.85),
@@ -206,10 +234,11 @@
         ),
         url('hero-bg.jpg') no-repeat center center/cover;
       color: white;
-      border-radius: 0 0 45px 45px;
+      border-radius: 0;
       box-shadow: inset 0 0 18px rgba(0,0,0,0.25);
       position: relative;
       overflow: hidden;
+      text-align: center;
       letter-spacing: normal;
     }
     
@@ -225,9 +254,10 @@
     }
     
     .hero-content {
-      flex: 1;
-      padding-right: 2.5rem;
-      max-width: 55%;
+      width: 100%;
+      max-width: 1200px;
+      padding: 0;
+      margin-bottom: clamp(1.5rem, 5vw, 3rem);
       animation: fadeInUp 1s ease forwards;
       opacity: 0;
       transform: translateY(20px);
@@ -243,38 +273,38 @@
     }
     
     .hero h1 {
-      font-size: 3.6rem;
-      margin-bottom: 1.2rem;
+      font-size: clamp(2rem, 6vw, 3.6rem);
+      margin-bottom: clamp(1rem, 3vw, 1.2rem);
       font-weight: 900;
       text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.7);
       line-height: 1.1;
     }
     
     .hero p {
-      font-size: 1.3rem;
-      margin-bottom: 3rem;
+      font-size: clamp(1rem, 3vw, 1.3rem);
+      margin-bottom: clamp(1.5rem, 5vw, 3rem);
       text-shadow: 2px 2px 14px rgba(0, 0, 0, 0.5);
       line-height: 1.6;
     }
     
     .cta-group {
       display: flex;
-      gap: 1rem;
+      gap: clamp(0.5rem, 2vw, 1rem);
       flex-wrap: wrap;
-      justify-content: flex-start;
+      justify-content: center;
     }
     
     .cta-button {
       background-color: var(--primary-red);
       color: #fff;
-      padding: 0.9rem 1.8rem;
+      padding: clamp(0.7rem, 2vw, 0.9rem) clamp(1.2rem, 3vw, 1.8rem);
       border-radius: 40px;
       font-weight: 900;
       box-shadow: 0 7px 26px rgba(217, 48, 37, 0.85);
       transition: var(--transition);
       cursor: pointer;
       text-transform: uppercase;
-      font-size: 1rem;
+      font-size: clamp(0.8rem, 2vw, 1rem);
       letter-spacing: 0.08em;
       user-select: none;
       border: 3px solid transparent;
@@ -312,7 +342,9 @@
     .hero-image {
       flex: 1;
       text-align: center;
-      max-width: 42%;
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
       border-radius: 24px;
       box-shadow: 0 25px 55px rgba(0, 0, 0, 0.55);
       animation: fadeInRight 1s ease forwards 0.5s;
@@ -351,8 +383,8 @@
       text-align: center;
       font-weight: 900;
       color: var(--primary-blue);
-      margin-bottom: 3rem;
-      font-size: 2.8rem;
+      margin-bottom: clamp(1.5rem, 4vw, 3rem);
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
       letter-spacing: normal;
       text-transform: uppercase;
       text-shadow: 0 2px 6px rgba(0,0,0,0.15);
@@ -374,7 +406,7 @@
     }
     
     .card-section, .activities-section {
-      padding: 7rem 0 3rem 0;
+      padding: clamp(3rem, 7vw, 7rem) 0;
       background-color: var(--bg-light);
       border-radius: 45px 45px 0 0;
       box-shadow: 0 15px 40px rgba(0,89,255,0.12);
@@ -413,7 +445,7 @@
     /* Project cards */
     .card {
       flex: 0 0 auto;
-      width: 320px;
+      width: clamp(280px, 85vw, 320px);
       background-color: #fff;
       border-radius: 24px;
       box-shadow: 0 15px 35px var(--card-shadow);
@@ -440,8 +472,8 @@
     }
     
     .card img {
-      width: 140px;
-      height: 140px;
+      width: clamp(100px, 25vw, 140px);
+      height: clamp(100px, 25vw, 140px);
       object-fit: cover;
       border-radius: 50%;
       margin: 1.6rem auto 1rem auto;
@@ -490,7 +522,7 @@
     /* Stats Section */
     .stats-section {
       background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
-      padding: 5rem 0;
+      padding: clamp(3rem, 7vw, 5rem) 0;
       color: white;
       text-align: center;
       margin: 3rem 0;
@@ -507,12 +539,12 @@
     
     .stat-item {
       flex: 1;
-      min-width: 200px;
-      padding: 1.5rem;
+      min-width: clamp(120px, 25vw, 200px);
+      padding: clamp(1rem, 2vw, 1.5rem);
     }
     
     .stat-number {
-      font-size: 3.5rem;
+      font-size: clamp(2rem, 6vw, 3.5rem);
       font-weight: 900;
       margin-bottom: 0.5rem;
       display: inline-block;
@@ -529,7 +561,7 @@
     }
     
     .stat-label {
-      font-size: 1.3rem;
+      font-size: clamp(1rem, 3vw, 1.3rem);
       font-weight: 600;
     }
 
@@ -537,12 +569,12 @@
     footer {
       background-color: var(--footer-bg);
       color: var(--footer-text);
-      padding: 4rem 3rem;
+      padding: clamp(2rem, 5vw, 4rem) var(--responsive-padding);
       margin-top: 2rem;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      gap: 30px;
+      gap: clamp(1rem, 3vw, 2rem);
       border-top-left-radius: 45px;
       border-top-right-radius: 45px;
       box-shadow: inset 0 12px 30px rgba(255 255 255 / 0.1);
@@ -563,15 +595,15 @@
     }
     
     .footer-section {
-      flex: 1 1 320px;
-      min-width: 320px;
+      flex: 1 1 clamp(280px, 100%, 320px);
+      min-width: auto;
       font-size: 1.05rem;
       position: relative;
       z-index: 1;
     }
     
     .footer-section h3 {
-      font-size: 2.2rem;
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
       margin-bottom: 1.5rem;
       font-weight: 900;
       color: var(--secondary-blue);
@@ -646,65 +678,221 @@
       z-index: 1;
     }
 
+    /* Sidebar Styles */
+    .sidebar {
+      position: fixed;
+      top: 50%;
+      right: -300px;
+      transform: translateY(-50%);
+      width: 300px;
+      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      border-radius: 24px 0 0 24px;
+      box-shadow: -5px 5px 30px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      transition: var(--transition);
+      padding: 1.5rem;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .sidebar.active {
+      right: 0;
+    }
+
+    .sidebar-toggle {
+      position: absolute;
+      right: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      width: 50px;
+      height: 80px;
+      border-radius: 24px 0 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.2);
+      color: white;
+      font-size: 1.5rem;
+      transition: var(--transition);
+    }
+
+    .sidebar-toggle:hover {
+      width: 55px;
+      background: linear-gradient(135deg, var(--secondary-blue), var(--primary-blue));
+    }
+
+    .sidebar-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .sidebar-header i {
+      font-size: 1.8rem;
+      color: white;
+    }
+
+    .sidebar-header h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .sidebar-item {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 0.8rem 1rem;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .sidebar-item:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateX(-5px);
+    }
+
+    .sidebar-item i {
+      font-size: 1.2rem;
+    }
+
+    .sidebar-item span {
+      font-weight: 500;
+    }
+
+    .sidebar-divider {
+      height: 2px;
+      background: rgba(255, 255, 255, 0.2);
+      margin: 0.5rem 0;
+    }
+
+    .sidebar-newsletter {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1rem;
+      border-radius: 12px;
+      margin-top: 1rem;
+    }
+
+    .sidebar-newsletter h4 {
+      margin-bottom: 0.8rem;
+      font-size: 1.1rem;
+    }
+
+    .sidebar-newsletter input {
+      width: 100%;
+      padding: 0.7rem;
+      border: none;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .sidebar-newsletter button {
+      width: 100%;
+      padding: 0.7rem;
+      border: none;
+      border-radius: 8px;
+      background: var(--primary-red);
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .sidebar-newsletter button:hover {
+      background: var(--secondary-red);
+    }
+
+    /* Animation for sidebar items */
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .sidebar-item {
+      opacity: 0;
+      animation: slideInRight 0.5s ease forwards;
+    }
+
+    .sidebar-item:nth-child(1) { animation-delay: 0.1s; }
+    .sidebar-item:nth-child(2) { animation-delay: 0.2s; }
+    .sidebar-item:nth-child(3) { animation-delay: 0.3s; }
+    .sidebar-item:nth-child(4) { animation-delay: 0.4s; }
+    .sidebar-item:nth-child(5) { animation-delay: 0.5s; }
+    .sidebar-divider { animation-delay: 0.6s; }
+    .sidebar-newsletter { animation: slideInRight 0.5s ease 0.7s forwards; }
+
     /* Responsive */
-    @media screen and (max-width: 1024px) {
+    @media screen and (min-width: 768px) {
+      .hero {
+        flex-direction: row;
+        text-align: right;
+        min-height: 90vh;
+        border-radius: 0 0 45px 45px;
+      }
+      
+      .hero-content {
+        max-width: 55%;
+        padding-right: clamp(1rem, 3vw, 2.5rem);
+        margin-bottom: 0;
+        text-align: right;
+      }
+      
+      .hero-image {
+        max-width: 42%;
+      }
+      
+      .cta-group {
+        justify-content: flex-start;
+      }
+      
+      .nav-links {
+        position: static;
+        width: auto;
+        height: auto;
+        background: transparent;
+        flex-direction: row;
+        justify-content: flex-end;
+        box-shadow: none;
+      }
+      
+      .mobile-menu-btn {
+        display: none;
+      }
+      
+      .overlay {
+        display: none;
+      }
+    }
+
+    @media screen and (min-width: 1024px) {
+      :root {
+        --base-font-size: 17px;
+      }
+      
       .hero-content {
         max-width: 60%;
-        padding-right: 1.5rem;
       }
       
       .hero-image {
         max-width: 38%;
       }
-      
-      .hero h1 {
-        font-size: 3rem;
-      }
-      
-      .hero p {
-        font-size: 1.1rem;
-      }
-      
-      .section-title {
-        font-size: 2.4rem;
-      }
-      
-      .cta-button {
-        padding: 0.8rem 1.6rem;
-        font-size: 0.95rem;
-      }
     }
 
-    @media screen and (max-width: 768px) {
-      .hero {
-        flex-direction: column;
-        padding: 70px 1.5rem 50px 1.5rem;
-        border-radius: 0;
-        min-height: auto;
-        text-align: center;
-      }
-      
-      .hero-content {
-        max-width: 100%;
-        padding: 0;
-        margin-bottom: 3rem;
-      }
-      
-      .hero-image {
-        max-width: 100%;
-        margin-bottom: 2rem;
-      }
-      
-      .cta-group {
-        justify-content: center;
-        gap: 0.8rem;
-      }
-      
-      .cta-button {
-        padding: 0.7rem 1.4rem;
-        font-size: 0.9rem;
-      }
-      
+    @media screen and (max-width: 767px) {
       .nav-links {
         position: fixed;
         top: 0;
@@ -833,7 +1021,6 @@
   <header aria-label="شريط التنقل العلوي">
     <nav class="container nav-left" role="banner" tabindex="0">
       <div class="nav-left">
-        <img src="LOGO2.png" alt="شعار جمعية رسالة فرع اسيوط" />
         <div class="logo-text">جمعية رسالة فرع أسيوط</div>
       </div>
       
@@ -843,11 +1030,10 @@
       
       <ul class="nav-links" role="list">
         <li><a href="#" class="active" aria-current="page">الرئيسية</a></li>
-        <li><a href="#">من نحن</a></li>
-        <li><a href="#">برامجنا</a></li>
+        <li><a href="about.html">من نحن</a></li>
         <li><a href="#">التطوع</a></li>
-        <li><a href="#">التبرع</a></li>
-        <li><a href="#">اتصل بنا</a></li>
+        <li><a href="gallery.html">معرض الصور الانجازات</a></li>
+        <li><a href="call.html">اتصل بنا</a></li>
       </ul>
     </nav>
     <div class="overlay"></div>
@@ -863,7 +1049,6 @@
       </p>
       <div class="cta-group">
         <a href="volanter.html" class="cta-button" role="button">التطوع</a>
-        <a href="help.html" class="cta-button" role="button">التبرع بالدم</a>
         <a href="Cash.html" class="cta-button" role="button">التبرع</a>
       </div>
     </div>
