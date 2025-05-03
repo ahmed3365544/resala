@@ -259,21 +259,22 @@
     
     .cta-group {
       display: flex;
-      gap: 1.4rem;
+      gap: 1rem;
       flex-wrap: wrap;
+      justify-content: flex-start;
     }
     
     .cta-button {
       background-color: var(--primary-red);
       color: #fff;
-      padding: 1.1rem 3rem;
+      padding: 0.9rem 1.8rem;
       border-radius: 40px;
       font-weight: 900;
       box-shadow: 0 7px 26px rgba(217, 48, 37, 0.85);
       transition: var(--transition);
       cursor: pointer;
       text-transform: uppercase;
-      font-size: 1.15rem;
+      font-size: 1rem;
       letter-spacing: 0.08em;
       user-select: none;
       border: 3px solid transparent;
@@ -281,6 +282,7 @@
       filter: drop-shadow(0 8px 4px rgba(217,48,37,0.45));
       position: relative;
       overflow: hidden;
+      white-space: nowrap;
     }
     
     .cta-button::after {
@@ -666,6 +668,11 @@
       .section-title {
         font-size: 2.4rem;
       }
+      
+      .cta-button {
+        padding: 0.8rem 1.6rem;
+        font-size: 0.95rem;
+      }
     }
 
     @media screen and (max-width: 768px) {
@@ -690,6 +697,12 @@
       
       .cta-group {
         justify-content: center;
+        gap: 0.8rem;
+      }
+      
+      .cta-button {
+        padding: 0.7rem 1.4rem;
+        font-size: 0.9rem;
       }
       
       .nav-links {
@@ -760,9 +773,13 @@
         margin-bottom: 2rem;
       }
       
+      .cta-group {
+        gap: 0.6rem;
+      }
+      
       .cta-button {
-        padding: 0.9rem 2rem;
-        font-size: 1rem;
+        padding: 0.7rem 1.2rem;
+        font-size: 0.85rem;
       }
       
       .section-title {
