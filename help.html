@@ -2,94 +2,130 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>نموذج التبرع بالدم</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body {
+        * {
+            box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f5ff;
+        }
+
+        body {
+            background-color: #f5f7fb;
+            margin: 0;
+            padding: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            margin: 0;
-            padding: 20px;
         }
-        form {
-            background-color: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            width: 400px;
-            border: 2px solid #3f51b5;
+
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
+            text-align: right;
         }
+
         h1 {
-            color: #3f51b5;
+            color: #3b5bb6;
             text-align: center;
             margin-bottom: 30px;
-            font-size: 28px;
-            font-weight: 600;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
         label {
             display: block;
             margin-bottom: 8px;
-            color: #3f51b5;
-            font-weight: 500;
+            font-weight: 600;
+            color: #444;
         }
+
         input, select {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #bdc3c7;
-            border-radius: 5px;
-            box-sizing: border-box;
-            transition: border-color 0.3s ease;
-        }
-        input:focus, select:focus {
-            outline: none;
-            border-color: #3f51b5;
-        }
-        input[type="submit"] {
-            background-color: #3f51b5;
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 18px;
-            font-weight: bold;
-            text-transform: uppercase;
             padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #3b5bb6;
+            color: white;
             border: none;
+            border-radius: 4px;
+            padding: 14px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
         }
-        input[type="submit"]:hover {
-            background-color: #f44336;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+
+        button:disabled {
+            background-color: #a1b0e0;
+            cursor: not-allowed;
         }
-        .notification {
-            background-color: #e8eaf6;
-            border-radius: 5px;
-            padding: 15px;
-            margin-top: 30px;
+
+        .message {
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 20px;
             text-align: center;
-            color: #3f51b5;
-            font-style: italic;
-            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
-    <form id="bloodDonationForm" action="submit_donation.php" method="post">
-        <h1>نموذج التبرع بالدم</h1>
-        
+<div class="container">
+    <h1>نموذج التبرع بالدم</h1>
+
+    <div id="message-container" style="display: none;" class="message"></div>
+
+    <div class="form-group">
         <label for="fullName">الاسم رباعي:</label>
-        <input type="text" id="fullName" name="fullName" required>
-        
-        <label for="phone">رقم الهاتف:</label>
-        <input type="tel" id="phone" name="phone" required>
-        
+        <input type="text" id="fullName" required>
+    </div>
+
+    <div class="form-group">
+        <label for="phoneNumber">رقم الهاتف:</label>
+        <input type="tel" id="phoneNumber" required>
+    </div>
+
+    <div class="form-group">
         <label for="governorate">المحافظة:</label>
-        <select id="governorate" name="governorate" required>
+        <select id="governorate" required>
             <option value="">اختر المحافظة</option>
             <option value="القاهرة">القاهرة</option>
             <option value="الإسكندرية">الإسكندرية</option>
@@ -118,9 +154,11 @@
             <option value="الوادي الجديد">الوادي الجديد</option>
             <option value="مطروح">مطروح</option>
         </select>
+    </div>
 
+    <div class="form-group">
         <label for="bloodType">فصيلة الدم:</label>
-        <select id="bloodType" name="bloodType" required>
+        <select id="bloodType" required>
             <option value="">اختر فصيلة الدم</option>
             <option value="A+">A+</option>
             <option value="A-">A-</option>
@@ -131,33 +169,88 @@
             <option value="O+">O+</option>
             <option value="O-">O-</option>
         </select>
-        
-        <label for="age">السن:</label>
-        <input type="number" id="age" name="age" required min="18" max="65">
-        
-        <input type="submit" value="إرسال">
-        
-        <div class="notification">
-            سيتم التواصل معك قريبًا لتحديد موعد التبرع
-        </div>
-    </form>
+    </div>
 
-    <script>
-        document.getElementById('bloodDonationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            if (this.checkValidity()) {
-                const formData = new FormData(this);
-                const data = Object.fromEntries(formData.entries());
-                
-                // هنا يمكنك إضافة الكود الخاص بإرسال البيانات إلى الخادم
-                console.log('البيانات المرسلة:', data);
-                alert('تم إرسال طلب التبرع بالدم بنجاح!');
-                this.reset();
-            } else {
-                this.reportValidity();
-            }
+    <div class="form-group">
+        <label for="age">السن:</label>
+        <input type="number" id="age" min="18" max="65" required>
+    </div>
+
+    <button id="submitBtn">إرسال</button>
+</div>
+
+<!-- سكريبت الاتصال بـ Supabase -->
+<script type="module">
+    // استيراد مكتبات Firebase
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+  
+    // إعداد Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyD7GJCzddDLE6B62HRnUY8x02xhq0vju6A",
+      authDomain: "resala-12132.firebaseapp.com",
+      projectId: "resala-12132",
+      storageBucket: "resala-12132.appspot.com",
+      messagingSenderId: "630917202997",
+      appId: "1:630917202997:web:ceeb420ab7ae242583dd7c"
+    };
+  
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+  
+    const submitBtn = document.getElementById('submitBtn');
+    const messageContainer = document.getElementById('message-container');
+  
+    submitBtn.addEventListener('click', async () => {
+      const fullName = document.getElementById('fullName').value.trim();
+      const phoneNumber = document.getElementById('phoneNumber').value.trim();
+      const governorate = document.getElementById('governorate').value;
+      const bloodType = document.getElementById('bloodType').value;
+      const age = parseInt(document.getElementById('age').value);
+  
+      if (!fullName || !phoneNumber || !governorate || !bloodType || !age) {
+        showMessage('يرجى ملء جميع الحقول.', 'error');
+        return;
+      }
+  
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = 'جاري الإرسال... <span class="loading"></span>';
+  
+      try {
+        await addDoc(collection(db, "blood_donations"), {
+          full_name: fullName,
+          phone_number: phoneNumber,
+          governorate: governorate,
+          blood_type: bloodType,
+          age: age,
+          timestamp: serverTimestamp()
         });
-    </script>
+  
+        showMessage('تم إرسال البيانات بنجاح. شكرًا لتبرعك!', 'success');
+        clearForm();
+      } catch (error) {
+        console.error("حدث خطأ:", error);
+        showMessage('حدث خطأ أثناء الإرسال. حاول مرة أخرى.', 'error');
+      }
+  
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'إرسال';
+    });
+  
+    function showMessage(message, type) {
+      messageContainer.textContent = message;
+      messageContainer.className = `message ${type}`;
+      messageContainer.style.display = 'block';
+    }
+  
+    function clearForm() {
+      document.getElementById('fullName').value = '';
+      document.getElementById('phoneNumber').value = '';
+      document.getElementById('governorate').value = '';
+      document.getElementById('bloodType').value = '';
+      document.getElementById('age').value = '';
+    }
+  </script>
+  
 </body>
 </html>

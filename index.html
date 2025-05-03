@@ -1,458 +1,1062 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <title>رسالة أسيوط - الصفحة الرئيسية</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+  <title>رسالة أسيوط - الصفحة الرئيسية</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap');
 
-        :root {
-            --primary-color: #0059ff;
-            --secondary-color: #00aaff;
-            --text-color: #333;
-            --bg-color: #f4f4f4;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Cairo', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* Header Styles */
-        header {
-            background-color: #fff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            width: 100%;
-            height: 10%;
-            top: 0;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-
-        .logo img {
-            height: 40px;
-            margin-left: 10px;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-right: 1.5rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        .burger {
-            display: none;
-            cursor: pointer;
-        }
-
-        .burger div {
-            width: 25px;
-            height: 3px;
-            background-color: var(--text-color);
-            margin: 5px;
-            transition: all 0.3s ease;
-        }
-
-        /* Hero Section */
-        .hero {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 5rem 0;
-            min-height: 100vh;
-        }
-
-        .hero-content {
-            flex: 1;
-            padding-right: 2rem;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: #fff;
-            padding: 0.8rem 1.5rem;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-        }
-
-        .cta-button:hover {
-            background-color: var(--secondary-color);
-        }
-
-        .hero-image {
-            flex: 1;
-            text-align: center;
-        }
-
-        .hero-image img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Banner Slider */
-        .banner-slider {
-            position: relative;
-            overflow: hidden;
-            height: 400px;
-            margin-bottom: 2rem;
-        }
-
-        .banner-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-        }
-
-        .banner-slide.active {
-            opacity: 1;
-        }
-
-        .banner-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Card Section */
-        .card-section {
-            padding: 2rem 0;
-        }
-
-        .card-container {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .card {
-            flex: 0 0 auto;
-            width: 300px;
-            margin-right: 1rem;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            scroll-snap-align: start;
-        }
-
-        .card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .card-content {
-            padding: 1rem;
-        }
-
-        .card h3 {
-            margin-bottom: 0.5rem;
-            color: var(--primary-color);
-        }
-
-        .card p {
-            font-size: 0.9rem;
-            color: var(--text-color);
-        }
-
-        /* Responsive Design */
-        @media screen and (max-width: 768px) {
-            .nav-links {
-                position: absolute;
-                right: 0;
-                height: 92vh;
-                top: 8vh;
-                background-color: #fff;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                width: 50%;
-                transform: translateX(100%);
-                transition: transform 0.5s ease-in;
-            }
-
-            .nav-links li {
-                opacity: 0;
-            }
-
-            .burger {
-                display: block;
-            }
-
-            .hero {
-                flex-direction: column-reverse;
-                text-align: center;
-            }
-
-            .hero-content, .hero-image {
-                flex: none;
-                width: 100%;
-            }
-
-            .hero-content {
-                padding-right: 0;
-                margin-top: 2rem;
-            }
-
-            .card-container {
-                padding-bottom: 1rem;
-            }
-        }
-
-        .nav-active {
-            transform: translateX(0%);
-        }
-
-        @keyframes navLinkFade {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0px);
-            }
-        }
-
-        .toggle .line1 {
-            transform: rotate(-45deg) translate(-5px, 6px);
-        }
-
-        .toggle .line2 {
-            opacity: 0;
-        }
-
-        .toggle .line3 {
-            transform: rotate(45deg) translate(-5px, -6px);
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <div class="container">
-            <nav>
-                <a href="#" class="logo">
-                    <img src="LOGO2.png" alt="شعار رسالة أسيوط">
-                    رسالة أسيوط
-                </a>
-                <ul class="nav-links">
-                    <li><a href="#">الرئيسية</a></li>
-                    <li><a href="#">من نحن</a></li>
-                    <li><a href="#">برامجنا</a></li>
-                    <li><a href="#">التطوع</a></li>
-                    <li><a href="#">التبرع</a></li>
-                    <li><a href="#">اتصل بنا</a></li>
-                </ul>
-                <div class="burger">
-                    <div class="line1"></div>
-                    <div class="line2"></div>
-                    <div class="line3"></div>
-                </div>
-            </nav>
-        </div>
-    </header>
-
-    <main>
-
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h1>معًا نصنع الفرق</h1>
-                    <p>رسالة أسيوط هي مؤسسة خيرية تهدف إلى خدمة المجتمع وتحسين حياة الأفراد من خلال مبادرات متنوعة ومشاريع تنموية.</p>
-                    <a href="volanter.html" classs="cta-button">التطوع</a>
-                    <a href="help.html" class="cta-button">التبرع بالدم </a>
-                    <a href="Cash.html" class="cta-button"> التبرع </a>
-                </div>
-                <div class="hero-image">
-                    <img src="LOGO2.png" alt="صورة توضيحية لأنشطة رسالة أسيوط">
-                </div>
-            </div>
-        </section>
-
-        <section class="card-section">
-            <div class="container">
-                <h2>مشاريعنا</h2>
-                <div class="card-container">
-                    <div class="card">
-                        <img src="LOGO2.png" alt="مشروع 1">
-                        <div class="card-content">
-                            <h3>مشروع التعليم</h3>
-                            <p>نعمل على توفير فرص تعليمية للأطفال المحتاجين.</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="LOGO2.png" alt="مشروع 2">
-                        <div class="card-content">
-                            <h3>مشروع الصحة</h3>
-                            <p>نقدم خدمات صحية مجانية للمجتمعات المحرومة.</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="LOGO2.png" alt="مشروع 3">
-                        <div class="card-content">
-                            <h3>مشروع التمكين الاقتصادي</h3>
-                            <p>ندعم الأسر من خلال مشاريع صغيرة مدرة للدخل.</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="LOGO2.png" alt="مشروع 4">
-                        <div class="card-content">
-                            <h3>مشروع البيئة</h3>
-                            <p>نعمل على تحسين البيئة المحلية وزيادة الوعي البيئي.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <script>
-        const navSlide = () => {
-            const burger = document.querySelector('.burger');
-            const nav = document.querySelector('.nav-links');
-            const navLinks = document.querySelectorAll('.nav-links li');
-
-            burger.addEventListener('click', () => {
-                // Toggle Nav
-                nav.classList.toggle('nav-active');
-
-                // Animate Links
-                navLinks.forEach((link, index) => {
-                    if (link.style.animation) {
-                        link.style.animation = '';
-                    } else {
-                        link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
-                    }
-                });
-
-                // Burger Animation
-                burger.classList.toggle('toggle');
-            });
-        }
-
-        navSlide();
-
-        // Shrink header on scroll
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.padding = '0.5rem 0';
-            } else {
-                header.style.padding = '1rem 0';
-            }
-        });
-
-        // Banner Slider
-        const bannerSlides = document.querySelectorAll('.banner-slide');
-        let currentSlide = 0;
-
-        function showSlide(n) {
-            bannerSlides[currentSlide].classList.remove('active');
-            currentSlide = (n + bannerSlides.length) % bannerSlides.length;
-            bannerSlides[currentSlide].classList.add('active');
-        }
-
-        function nextSlide() {
-            showSlide(currentSlide + 1);
-        }
-
-        // تبديل الشريحة كل 5 ثوانٍ
-        setInterval(nextSlide, 5000);
-
-        // Card Scrolling
-        const cardContainer = document.querySelector('.card-container');
-        const cards = document.querySelectorAll('.card');
-        let currentCardIndex = 0;
-
-        function scrollCards() {
-            currentCardIndex = (currentCardIndex + 1) % cards.length;
-            const cardWidth = cards[0].offsetWidth + parseInt(window.getComputedStyle(cards[0]).marginRight);
-            cardContainer.scroll({
-                left: currentCardIndex * cardWidth,
-                behavior: 'smooth'
-        });
+    :root {
+      --primary-blue: #0059ff;
+      --secondary-blue: #00aaff;
+      --primary-red: #d93025;
+      --secondary-red: #e85547;
+      --text-dark: #333;
+      --bg-light: #ffffff;
+      --footer-bg: #0047b3;
+      --footer-text: #cce4ff;
+      --nav-bg: #ffffff;
+      --nav-text: #0059ff;
+      --nav-hover-bg: rgba(0, 89, 255, 0.1);
+      --nav-hover-text: #002d99;
+      --button-bg: var(--primary-red);
+      --button-hover-bg: var(--secondary-red);
+      --card-shadow: rgba(0, 89, 255, 0.15);
+      --shadow-light: rgba(0, 0, 0, 0.1);
+      --shadow-heavy: rgba(0, 0, 0, 0.15);
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
-    // تبديل الكروت كل 5 ثوانٍ
-    let cardScrollInterval = setInterval(scrollCards, 5000);
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Tajawal', sans-serif;
+    }
 
-    // إيقاف التمرير التلقائي عند تفاعل المستخدم
-    cardContainer.addEventListener('mouseenter', () => {
-        clearInterval(cardScrollInterval);
-    });
+    body {
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+      padding-top: 70px;
+      padding-bottom: 0;
+      min-height: 100vh;
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
 
-    cardContainer.addEventListener('mouseleave', () => {
-        cardScrollInterval = setInterval(scrollCards, 5000);
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Navbar */
+    header {
+      background-color: var(--nav-bg);
+      color: var(--nav-text);
+      position: fixed;
+      width: 100%;
+      height: 70px;
+      top: 0;
+      left: 0;
+      z-index: 11000;
+      box-shadow: 0 4px 12px var(--shadow-heavy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      letter-spacing: 0.015em;
+      font-weight: 600;
+      backdrop-filter: saturate(180%) blur(10px);
+      transition: var(--transition);
+    }
+    
+    nav {
+      max-width: 1200px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+    }
+    
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      cursor: pointer;
+      user-select: none;
+      color: var(--nav-text);
+    }
+    
+    .nav-left img {
+      height: 44px;
+      width: 44px;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0,89,255,0.3);
+      transition: var(--transition);
+    }
+    
+    .nav-left img:hover {
+      transform: scale(1.15);
+      box-shadow: 0 0 20px rgba(0,89,255,0.6);
+    }
+    
+    .nav-left .logo-text {
+      font-size: 1.9rem;
+      font-weight: 800;
+      white-space: nowrap;
+      user-select: text;
+      text-shadow: 0 0 6px rgba(0, 89, 255, 0.4);
+      letter-spacing: normal;
+      color: var(--nav-text);
+      cursor: default;
+    }
+    
+    /* Mobile Menu Button */
+    .mobile-menu-btn {
+      display: none;
+      background: transparent;
+      border: none;
+      color: var(--nav-text);
+      font-size: 1.8rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      z-index: 10001;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      height: 100%;
+      align-items: center;
+      transition: var(--transition);
+    }
+    
+    .nav-links li a {
+      color: var(--nav-text);
+      font-weight: 700;
+      padding: 14px 18px;
+      border-radius: 12px;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      height: 100%;
+      font-size: 1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    
+    .nav-links li a:hover,
+    .nav-links li a.active {
+      background-color: var(--nav-hover-bg);
+      color: var(--nav-hover-text);
+      box-shadow: inset 0 -5px 15px rgba(255 255 255 / 0.4);
+      text-shadow: 0 0 4px var(--nav-hover-text);
+    }
+    
+    .nav-links li a {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .nav-links li a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 8px;
+      width: 100%;
+      height: 2px;
+      background: var(--primary-blue);
+      transform: translateX(-100%);
+      transition: var(--transition);
+      border-radius: 1px;
+    }
+    
+    .nav-links li a:hover::after,
+    .nav-links li a.active::after {
+      transform: translateX(0);
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 90px 0 70px 0;
+      min-height: 90vh;
+      background: linear-gradient(
+          to right,
+          rgba(0, 89, 255, 0.85),
+          rgba(0, 170, 255, 0.85)
+        ),
+        url('hero-bg.jpg') no-repeat center center/cover;
+      color: white;
+      border-radius: 0 0 45px 45px;
+      box-shadow: inset 0 0 18px rgba(0,0,0,0.25);
+      position: relative;
+      overflow: hidden;
+      letter-spacing: normal;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 50%, rgba(0, 89, 255, 0.3), transparent 60%);
+      z-index: 0;
+    }
+    
+    .hero-content {
+      flex: 1;
+      padding-right: 2.5rem;
+      max-width: 55%;
+      animation: fadeInUp 1s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+      position: relative;
+      z-index: 1;
+    }
+    
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .hero h1 {
+      font-size: 3.6rem;
+      margin-bottom: 1.2rem;
+      font-weight: 900;
+      text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.7);
+      line-height: 1.1;
+    }
+    
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 3rem;
+      text-shadow: 2px 2px 14px rgba(0, 0, 0, 0.5);
+      line-height: 1.6;
+    }
+    
+    .cta-group {
+      display: flex;
+      gap: 1.4rem;
+      flex-wrap: wrap;
+    }
+    
+    .cta-button {
+      background-color: var(--primary-red);
+      color: #fff;
+      padding: 1.1rem 3rem;
+      border-radius: 40px;
+      font-weight: 900;
+      box-shadow: 0 7px 26px rgba(217, 48, 37, 0.85);
+      transition: var(--transition);
+      cursor: pointer;
+      text-transform: uppercase;
+      font-size: 1.15rem;
+      letter-spacing: 0.08em;
+      user-select: none;
+      border: 3px solid transparent;
+      display: inline-block;
+      filter: drop-shadow(0 8px 4px rgba(217,48,37,0.45));
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .cta-button::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.3));
+      transform: translateY(-100%);
+      transition: var(--transition);
+    }
+    
+    .cta-button:hover {
+      background-color: var(--secondary-red);
+      box-shadow: 0 9px 30px rgba(232, 85, 71, 0.95);
+      border-color: #e85547;
+      transform: scale(1.05);
+      filter: drop-shadow(0 11px 6px rgba(232,85,71,0.6));
+    }
+    
+    .cta-button:hover::after {
+      transform: translateY(0);
+    }
+    
+    .hero-image {
+      flex: 1;
+      text-align: center;
+      max-width: 42%;
+      border-radius: 24px;
+      box-shadow: 0 25px 55px rgba(0, 0, 0, 0.55);
+      animation: fadeInRight 1s ease forwards 0.5s;
+      opacity: 0;
+      transform: translateX(40px);
+      overflow: hidden;
+      background: #003d99;
+      position: relative;
+      z-index: 1;
+    }
+    
+    @keyframes fadeInRight {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    .hero-image img {
+      max-width: 100%;
+      border-radius: 24px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+      transition: var(--transition);
+      display: block;
+      margin: 0 auto;
+      filter: drop-shadow(0 20px 35px rgba(0,0,0,0.35));
+    }
+    
+    .hero-image img:hover {
+      transform: scale(1.1) rotate(-1deg);
+      filter: drop-shadow(0 25px 45px rgba(0,0,0,0.45));
+    }
+
+    /* Projects & Activities Section */
+    .section-title {
+      text-align: center;
+      font-weight: 900;
+      color: var(--primary-blue);
+      margin-bottom: 3rem;
+      font-size: 2.8rem;
+      letter-spacing: normal;
+      text-transform: uppercase;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      position: relative;
+      display: inline-block;
+      padding-bottom: 1rem;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--primary-blue);
+      border-radius: 2px;
+    }
+    
+    .card-section, .activities-section {
+      padding: 7rem 0 3rem 0;
+      background-color: var(--bg-light);
+      border-radius: 45px 45px 0 0;
+      box-shadow: 0 15px 40px rgba(0,89,255,0.12);
+      scroll-margin-top: 70px;
+      color: var(--text-dark);
+      position: relative;
+    }
+    
+    /* Projects carousel container */
+    .card-container {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      gap: 2rem;
+      padding-bottom: 16px;
+      scroll-padding-right: 1rem;
+      scroll-padding-left: 1rem;
+    }
+    
+    .card-container::-webkit-scrollbar {
+      height: 8px;
+    }
+    
+    .card-container::-webkit-scrollbar-thumb {
+      background-color: var(--secondary-blue);
+      border-radius: 8px;
+    }
+    
+    .card-container::-webkit-scrollbar-track {
+      background: rgba(0,0,0,0.05);
+      border-radius: 8px;
+    }
+    
+    /* Project cards */
+    .card {
+      flex: 0 0 auto;
+      width: 320px;
+      background-color: #fff;
+      border-radius: 24px;
+      box-shadow: 0 15px 35px var(--card-shadow);
+      overflow: hidden;
+      scroll-snap-align: start;
+      transition: var(--transition);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      text-align: center;
+      padding-bottom: 1rem;
+      position: relative;
+    }
+    
+    .card:hover {
+      transform: translateY(-16px) scale(1.04);
+      box-shadow: 0 30px 70px rgba(0, 89, 255, 0.32);
+    }
+    
+    .card:hover img {
+      transform: scale(1.12);
+      filter: brightness(0.95);
+    }
+    
+    .card img {
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin: 1.6rem auto 1rem auto;
+      transition: var(--transition);
+      box-shadow: 0 6px 15px rgba(0,89,255,0.2);
+      border: 3px solid rgba(0, 89, 255, 0.25);
+      background: white;
+    }
+    
+    .card-content {
+      padding: 0 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    
+    .card h3 {
+      margin: 0.8rem 0 1rem;
+      color: var(--primary-blue);
+      font-weight: 900;
+      font-size: 1.3rem;
+      text-transform: none;
+    }
+    
+    .card p {
+      font-size: 1.05rem;
+      color: var(--text-dark);
+      flex-grow: 1;
+      line-height: 1.45;
+    }
+    
+    /* Activities gallery same style as projects */
+    .activities-gallery {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      gap: 2rem;
+      padding-bottom: 16px;
+      scroll-padding-right: 1rem;
+      scroll-padding-left: 1rem;
+    }
+    
+    /* Stats Section */
+    .stats-section {
+      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      padding: 5rem 0;
+      color: white;
+      text-align: center;
+      margin: 3rem 0;
+      border-radius: 45px;
+      box-shadow: 0 15px 40px rgba(0,89,255,0.2);
+    }
+    
+    .stats-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    
+    .stat-item {
+      flex: 1;
+      min-width: 200px;
+      padding: 1.5rem;
+    }
+    
+    .stat-number {
+      font-size: 3.5rem;
+      font-weight: 900;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+      position: relative;
+    }
+    
+    .stat-number::after {
+      content: '+';
+      position: absolute;
+      right: -1.2rem;
+      top: 0;
+      font-size: 2rem;
+      color: rgba(255,255,255,0.7);
+    }
+    
+    .stat-label {
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--footer-bg);
+      color: var(--footer-text);
+      padding: 4rem 3rem;
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 30px;
+      border-top-left-radius: 45px;
+      border-top-right-radius: 45px;
+      box-shadow: inset 0 12px 30px rgba(255 255 255 / 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('pattern.png') repeat;
+      opacity: 0.05;
+      z-index: 0;
+    }
+    
+    .footer-section {
+      flex: 1 1 320px;
+      min-width: 320px;
+      font-size: 1.05rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .footer-section h3 {
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      font-weight: 900;
+      color: var(--secondary-blue);
+      letter-spacing: normal;
+      text-shadow: 0 0 8px var(--secondary-blue);
+      user-select: text;
+      position: relative;
+    }
+    
+    .footer-section h3::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--secondary-blue);
+      border-radius: 3px;
+    }
+    
+    .footer-section p,
+    .footer-section a {
+      color: var(--footer-text);
+      margin-bottom: 0.85rem;
+      display: block;
+      transition: var(--transition);
+      line-height: 1.6;
+      user-select: text;
+    }
+    
+    .footer-section a:hover {
+      color: var(--primary-blue);
+      text-decoration: underline;
+    }
+    
+    .social-icons {
+      margin-top: 1.2rem;
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .social-icons a {
+      width: 45px;
+      height: 45px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: var(--footer-text);
+      transition: var(--transition);
+    }
+    
+    .social-icons a:hover {
+      background: var(--primary-blue);
+      color: white;
+      transform: translateY(-5px);
+    }
+    
+    .footer-bottom-text {
+      text-align: center;
+      width: 100%;
+      margin-top: 2.5rem;
+      font-size: 1rem;
+      color: #a9c7ff;
+      user-select: none;
+      font-weight: 600;
+      letter-spacing: normal;
+      text-shadow: 0 0 5px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Responsive */
+    @media screen and (max-width: 1024px) {
+      .hero-content {
+        max-width: 60%;
+        padding-right: 1.5rem;
+      }
+      
+      .hero-image {
+        max-width: 38%;
+      }
+      
+      .hero h1 {
+        font-size: 3rem;
+      }
+      
+      .hero p {
+        font-size: 1.1rem;
+      }
+      
+      .section-title {
+        font-size: 2.4rem;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+        padding: 70px 1.5rem 50px 1.5rem;
+        border-radius: 0;
+        min-height: auto;
+        text-align: center;
+      }
+      
+      .hero-content {
+        max-width: 100%;
+        padding: 0;
+        margin-bottom: 3rem;
+      }
+      
+      .hero-image {
+        max-width: 100%;
+        margin-bottom: 2rem;
+      }
+      
+      .cta-group {
+        justify-content: center;
+      }
+      
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 320px;
+        height: 100vh;
+        background: var(--nav-bg);
+        flex-direction: column;
+        justify-content: center;
+        gap: 1.5rem;
+        transition: var(--transition);
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        z-index: 10000;
+      }
+      
+      .nav-links.active {
+        right: 0;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .stat-item {
+        min-width: 150px;
+      }
+      
+      .stat-number {
+        font-size: 2.5rem;
+      }
+      
+      .stat-label {
+        font-size: 1.1rem;
+      }
+      
+      footer {
+        padding: 3rem 1.5rem;
+      }
+      
+      .footer-section h3 {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .nav-left .logo-text {
+        font-size: 1.5rem;
+      }
+      
+      .nav-left img {
+        width: 36px;
+        height: 36px;
+      }
+      
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+      }
+      
+      .cta-button {
+        padding: 0.9rem 2rem;
+        font-size: 1rem;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .card,
+      .activities-item {
+        width: 280px;
+      }
+      
+      .stats-container {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      
+      .stat-item {
+        padding: 1rem;
+      }
+      
+      .footer-section {
+        min-width: 100%;
+      }
+      
+      .footer-bottom-text {
+        font-size: 0.9rem;
+      }
+    }
+
+    /* Mobile Menu Overlay */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+    
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+  </style>
+</head>
+<body>
+  <header aria-label="شريط التنقل العلوي">
+    <nav class="container nav-left" role="banner" tabindex="0">
+      <div class="nav-left">
+        <img src="LOGO2.png" alt="شعار جمعية رسالة فرع اسيوط" />
+        <div class="logo-text">جمعية رسالة فرع أسيوط</div>
+      </div>
+      
+      <button class="mobile-menu-btn" aria-label="فتح القائمة" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <ul class="nav-links" role="list">
+        <li><a href="#" class="active" aria-current="page">الرئيسية</a></li>
+        <li><a href="#">من نحن</a></li>
+        <li><a href="#">برامجنا</a></li>
+        <li><a href="#">التطوع</a></li>
+        <li><a href="#">التبرع</a></li>
+        <li><a href="#">اتصل بنا</a></li>
+      </ul>
+    </nav>
+    <div class="overlay"></div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" aria-label="قسم المقدمة">
+    <div class="container hero-content">
+      <h1>معًا نصنع الفرق</h1>
+      <p>
+        رسالة أسيوط هي مؤسسة خيرية تهدف إلى خدمة المجتمع وتحسين حياة
+        الأفراد من خلال مبادرات متنوعة ومشاريع تنموية.
+      </p>
+      <div class="cta-group">
+        <a href="volanter.html" class="cta-button" role="button">التطوع</a>
+        <a href="help.html" class="cta-button" role="button">التبرع بالدم</a>
+        <a href="Cash.html" class="cta-button" role="button">التبرع</a>
+      </div>
+    </div>
+    <div class="container hero-image" aria-hidden="true">
+      <img src="LOGO2.png" alt="صورة توضيحية لأنشطة رسالة أسيوط" />
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="card-section" aria-labelledby="projects-heading">
+    <div class="container">
+      <h2 id="projects-heading" class="section-title">معرض أعمالنا</h2>
+      <div class="card-container" tabindex="0" aria-label="معرض مشاريع رسالة أسيوط">
+        <div class="card" tabindex="0">
+          <img src="work1.jpg" alt="مشروع التعليم" loading="lazy" />
+          <div class="card-content">
+            <h3>مشروع التعليم</h3>
+            <p>نوفر فرص تعليمية للأطفال المحتاجين مع بيئة تعليمية متطورة.</p>
+          </div>
+        </div>
+        <div class="card" tabindex="0">
+          <img src="work2.jpg" alt="مشروع الصحة" loading="lazy" />
+          <div class="card-content">
+            <h3>مشروع الصحة</h3>
+            <p>نوفر خدمات صحية وعيادات متنقلة تغطي المناطق المحرومة.</p>
+          </div>
+        </div>
+        <div class="card" tabindex="0">
+          <img src="work3.jpg" alt="مشروع التمكين الاقتصادي" loading="lazy" />
+          <div class="card-content">
+            <h3>التمكين الاقتصادي</h3>
+            <p>ندعم الأسر بمشاريع مدرة للدخل وبرامج تدريبية متخصصة.</p>
+          </div>
+        </div>
+        <div class="card" tabindex="0">
+          <img src="work4.jpg" alt="مشروع البيئة" loading="lazy" />
+          <div class="card-content">
+            <h3>مشروع البيئة</h3>
+            <p>نعزز الوعي البيئي ونفذ حملات للتشجير وتنظيف البيئة المحلية.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats-section" aria-label="إحصائيات الجمعية">
+    <div class="container">
+      <h2 class="section-title" style="color: white; text-shadow: 0 2px 6px rgba(0,0,0,0.3);">إنجازاتنا</h2>
+      <div class="stats-container">
+        <div class="stat-item">
+          <div class="stat-number">500</div>
+          <div class="stat-label">متطوع</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">120</div>
+          <div class="stat-label">مشروع</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">3000</div>
+          <div class="stat-label">مستفيد</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">50</div>
+          <div class="stat-label">قرية</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Activities Section -->
+  <section class="card-section" aria-labelledby="activities-heading" style="margin-bottom: 80px;">
+    <div class="container">
+      <h2 id="activities-heading" class="section-title">أنشطتنا</h2>
+      <div class="activities-gallery card-container" aria-label="معرض صور أنشطتنا" tabindex="0">
+        <div class="card activities-item" tabindex="0">
+          <img src="activity1.jpg" alt="حملات نظافة" />
+          <div class="card-content">
+            <h3>حملات نظافة</h3>
+            <p>حملات تنظيف وتجميل المناطق المحلية.</p>
+          </div>
+        </div>
+        <div class="card activities-item" tabindex="0">
+          <img src="activity2.jpg" alt="ورش تعليمية" />
+          <div class="card-content">
+            <h3>ورش تعليمية</h3>
+            <p>تنظيم ورش عمل ودورات للأطفال والشباب.</p>
+          </div>
+        </div>
+        <div class="card activities-item" tabindex="0">
+          <img src="activity3.jpg" alt="عيادات مجانية" />
+          <div class="card-content">
+            <h3>عيادات مجانية</h3>
+            <p>توفير خدمات صحية في القرى المحرومة.</p>
+          </div>
+        </div>
+        <div class="card activities-item" tabindex="0">
+          <img src="activity4.jpg" alt="التشجير والبيئة" />
+          <div class="card-content">
+            <h3>التشجير والبيئة</h3>
+            <p>مبادرات للتشجير والحفاظ على البيئة.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="container" style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:2rem;">
+      <section class="footer-section" aria-label="عن المؤسسة">
+        <h3>رسالة أسيوط</h3>
+        <p>مؤسسة خيرية تهدف لتحسين حياة الأفراد ودعم المجتمعات في أسيوط ومحيطها.</p>
+      </section>
+
+      <section class="footer-section" aria-label="روابط">
+        <h3>روابط سريعة</h3>
+        <ul class="footer-links" role="list" style="list-style:none; padding:0;">
+          <li><a href="#">الرئيسية</a></li>
+          <li><a href="#">من نحن</a></li>
+          <li><a href="#">برامجنا</a></li>
+          <li><a href="#">التطوع</a></li>
+          <li><a href="#">التبرع</a></li>
+          <li><a href="#">اتصل بنا</a></li>
+        </ul>
+      </section>
+
+      <section class="footer-section" aria-label="الاتصال">
+        <h3>تواصل معنا</h3>
+        <p>العنوان: أسيوط - مصر</p>
+        <p>الهاتف: 0123456789</p>
+        <p>البريد الإلكتروني: info@asaot.org</p>
+        <div class="social-icons" role="list" aria-label="روابط وسائل التواصل الاجتماعي">
+          <a href="#" aria-label="فيسبوك" role="listitem"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="تويتر" role="listitem"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="إنستغرام" role="listitem"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="لينكد إن" role="listitem"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </section>
+    </div>
+    <div class="footer-bottom-text">
+      &copy; 2024 رسالة أسيوط. جميع الحقوق محفوظة.
+    </div>
+  </footer>
+
+  <script>
+    // Mobile Menu Toggle
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    const overlay = document.querySelector('.overlay');
+    
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      overlay.classList.toggle('active');
+      menuBtn.setAttribute('aria-expanded', navLinks.classList.contains('active'));
     });
-</script>
+    
+    overlay.addEventListener('click', () => {
+      navLinks.classList.remove('active');
+      overlay.classList.remove('active');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+          
+          // Close mobile menu if open
+          navLinks.classList.remove('active');
+          overlay.classList.remove('active');
+          menuBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+    
+    // Add animation on scroll
+    const animateOnScroll = () => {
+      const elements = document.querySelectorAll('.card, .activities-item, .stat-item');
+      
+      elements.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.2;
+        
+        if (elementPosition < screenPosition) {
+          element.style.opacity = '1';
+          element.style.transform = 'translateY(0)';
+        }
+      });
+    };
+    
+    // Initialize elements with opacity 0 for animation
+    document.querySelectorAll('.card, .activities-item, .stat-item').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'all 0.6s ease';
+    });
+    
+    window.addEventListener('scroll', animateOnScroll);
+    window.addEventListener('load', animateOnScroll);
+  </script>
 </body>
 </html>
